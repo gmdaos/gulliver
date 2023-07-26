@@ -1,0 +1,282 @@
+@import '../../sass/index.scss';
+
+body {
+  .qwik__product {
+    .main__content {
+      @include dflex(column, '', '', 1em);
+      padding: 1em;
+
+      .detail__content {
+        @include dflex(column, '', '', 1em);
+      }
+      .section__img,
+      .section__shop,
+      .section__info {
+        @include card();
+        @include shadow();
+      }
+      .section__img {
+        padding: 0.5em;
+        height: 100%;
+        .info__detail {
+          position: relative;
+          margin-bottom: 1em;
+          overflow: hidden;
+          img {
+            border-radius: 10px;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+          }
+          .drop__description {
+            position: absolute;
+            bottom: 0;
+            height: 0;
+            transition: ease-out 0.2s;
+            &.show {
+              height: 100%;
+              bottom: 0px;
+              overflow: visible;
+              padding: 1em;
+              @include glass(var(--op-bg-visible), 0.7);
+              @include blur();
+              transition: ease-out 0.2s;
+            }
+          }
+        }
+        .btn__detail {
+          display: block;
+          width: max-content;
+          padding: 0.5em 0;
+          text-align: center;
+          @include card(var(--p-clear), 10px);
+          color: var(--p-visible);
+          margin-bottom: 0.5em;
+          cursor: pointer;
+          width: 100%;
+          transition: ease-out 0.2s;
+          &:hover {
+            @include card(var(--p-visible), 10px);
+            color: var(--p-clear);
+            transition: ease-out 0.2s;
+          }
+        }
+      }
+      .section__info {
+        @include dflex(column, '', '', 0.5em);
+        padding: 0.5em;
+        hr {
+          border: 1px solid rgba(var(--op-plus), 0.4);
+        }
+        .content__all-price,
+        .color__content {
+          @include card(var(--bg), 10px);
+          @include shadow();
+          padding: 0.5em;
+        }
+
+        .color__content {
+          @include dflex(column, '', '', 0.5em);
+          .flex__table {
+            @include dflex(column, '', '', 0.5em);
+
+            .color__section {
+              @include dflex('', '', '', 0.5em);
+              flex-wrap: wrap;
+              padding-right: 0.5em;
+              img {
+                width: 4em;
+                border-radius: 5px;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+              }
+              input {
+                width: 2em;
+                @include op-bg(var(--op-bg), 0.5);
+                border-radius: 5px;
+                padding: 0.2em 0.6em;
+                outline: none;
+                &::-webkit-inner-spin-button,
+                &::-webkit-outer-spin-button {
+                  -webkit-appearance: none;
+                  margin: 0;
+                }
+              }
+              .invalid {
+                color: var(--blood);
+              }
+            }
+            .size__section,
+            .quantety__section {
+              @include dflex('',center,'',1em);
+            }
+            .quantety__section {
+              .counter {
+                @include dflex();
+                .view__counter {
+                  padding: 0.5em 1em;
+                  background-color: var(--bg-visible);
+                  border: 1px solid var(--bg-dull)
+                }
+                .decress,
+                .increment {
+                  @include dflex('', center);
+                  padding: 0.5em 1em;
+                  background-color: var(--bg-visible);
+                  border: 1px solid var(--bg-dull);
+                  color: var(--p-clear);
+                  cursor: pointer;
+                  transition: ease-out .2s;
+                  &:hover{
+                    background-color: rgba(var(--op-p-clear), 0.3);
+                    transition: ease-out .2s;
+                  }
+                }
+                .decress {
+                  border-radius: 10px 0 0 10px;
+                }
+                .increment {
+                  border-radius: 0 10px 10px 0;
+                }
+              }
+            }
+          }
+          .notification {
+            color: var(--blood);
+          }
+        }
+      }
+
+      .section__shop {
+        padding: 0.5em;
+        @include dflex(column, '', '', 0.5em);
+
+        .ship__content,
+        .info__to-shiping,
+        .recomendation__shiping,
+        .quantity__shiping,
+        .btn__content {
+          @include dflex(column, '', '', 0.5em);
+          @include card(var(--bg), 10px);
+          @include shadow();
+          padding: 0.5em;
+        }
+
+        .ship__content {
+          flex-direction: row;
+          justify-content: space-between;
+          .ship__desteni {
+            @include dflex('', center, '', 0.3em);
+            @include card(var(--accent-dull), 50px);
+            color: var(--accent-clear);
+            padding: 0 0.5em;
+            cursor: pointer;
+            transition: ease-out 0.2s;
+            &:hover {
+              @include card(var(--accent-clear), 50px);
+              color: var(--accent-dull);
+              transition: ease-out 0.2s;
+            }
+          }
+        }
+        .btn__content {
+          @include dflex(column-reverse, center);
+          .btn__buy,
+          .btn__add {
+            width: 80%;
+            padding: 0.5em 1em;
+            text-align: center;
+            cursor: pointer;
+            transition: ease-out 0.2s;
+          }
+          .btn__buy {
+            @include glass(var(--op-p-clear), 0.8);
+            color: var(--light);
+            &:hover {
+              @include glass(var(--op-p-clear), 1, 10px);
+              @include shadow();
+              transition: ease-out 0.2s;
+            }
+          }
+          .btn__add {
+            @include glass(var(--op-accent-clear), 0.8);
+            color: var(--light);
+            @include dflex('', center, center, 0.5em);
+            &:hover {
+              @include glass(var(--op-accent-clear), 1);
+              @include shadow();
+              transition: ease-out 0.2s;
+            }
+          }
+        }
+      }
+    }
+  }
+  /* breakPoints */
+  @media (min-width: 640px) {
+    .qwik__product {
+      .main__content {
+        .section__img {
+          width: 50%;
+          margin: auto;
+        }
+      }
+    }
+  }
+  @media (min-width: 768px) {
+    .qwik__product {
+      .main__content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+          'detail detail'
+          'shop shop';
+        .detail__content {
+          grid-area: detail;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-areas: 'img info';
+          gap: 1em;
+          .section__img {
+            grid-area: img;
+            width: 100%;
+          }
+          .section__info {
+            width: 100%;
+            grid-area: info;
+          }
+        }
+        .section__shop {
+          grid-area: shop;
+          .quantity__shiping {
+            .total__unit,
+            .total__price {
+              width: fit-content;
+              @include glass(var(--op-bg1), 0.3);
+              @include shadow-in(var(--op-bg1), 0.5);
+              padding: 0.3em 0.8em;
+            }
+          }
+          .btn__content {
+            @include dflex(row, center, center, 1em);
+          }
+        }
+      }
+    }
+  }
+  @media (min-width: 1024px) {
+    .qwik__product {
+      .main__content {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas: 'detail detail shop';
+        .section__shop {
+          .btn__content {
+            flex-direction: column-reverse;
+          }
+        }
+      }
+    }
+  }
+  @media (min-width: 1280px) {
+    /* Extra Large (xl)  */
+  }
+}

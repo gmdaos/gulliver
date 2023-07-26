@@ -1,0 +1,47 @@
+@import '../../../sass//index.scss';
+body {
+  .Select__container {
+    position: relative;
+    .value__select {
+      width: 150px;
+      padding: 0.5em 1em;
+      background-color: rgba(var(--op-p-clear), 0.4);
+      border-radius: 0.5em;
+      text-align: center;
+
+      cursor: pointer;
+      &:hover {
+        background-color: rgba(var(--op-p-clear), 0.5);
+      }
+    }
+    .items__container {
+      position: absolute;
+      @include dflex(column, '', '', 1px);
+      @include glass(var(--op-bg-visible), 1);
+      @include shadow();
+      top: 2.7em;
+      left: 0;
+      overflow: hidden;
+      width: 150px;
+      max-height: 0;
+      transition: ease-out 0.2s;
+      &.show {
+        max-height: 210px;
+        transition: ease-out 0.2s;
+      }
+      .items {
+        width: 100%;
+        text-align: center;
+        background-color: rgba(var(--op-p-clear), 0.5);
+        cursor: pointer;
+        padding: 0.5em 1em;
+        transition: ease-out 0.2s;
+        &:hover {
+          @include glass(var(--op-p-clear), 0.7);
+          border-radius: unset;
+          transition: ease-out 0.2s;
+        }
+      }
+    }
+  }
+}

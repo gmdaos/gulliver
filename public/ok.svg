@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: rgb(241, 242, 243); display: block; z-index: 1; position: relative; shape-rendering: auto; animation-play-state: running; animation-delay: 0s;" width="1494" height="718" preserveAspectRatio="xMidYMid" viewBox="0 0 1494 718">
+  <!-- Agregamos un rectángulo con el tamaño del lienzo como fondo -->
+  <rect width="100%" height="100%" fill="#e8daef" />
+
+  <g transform="translate(747,359) scale(1,1) translate(-747,-359)" style="animation-play-state: running; animation-delay: 0s;">
+    <!-- El contenido original del SVG (sin el fondo) -->
+    <linearGradient id="lg-0.37805322006879627" x1="0" x2="1" y1="0" y2="0" style="animation-play-state: running; animation-delay: 0s;">
+      <stop stop-color="#34065e" offset="0" style="animation-play-state: running; animation-delay: 0s;"></stop>
+      <stop stop-color="#6a089e" offset="1" style="animation-play-state: running; animation-delay: 0s;"></stop>
+    </linearGradient>
+    <path d="M 1205 359 C 1205 534 922 618 747 618 C 572 618 231 534 231 359 C 231 184 572 107 747 107 C 922 107 1205 184 1205 359" fill="url(#lg-0.37805322006879627)" opacity="0.43000000000000005" style="animation-play-state: running; animation-delay: 0s;">
+      <animate attributeName="d" dur="10s" repeatCount="indefinite" keyTimes="0;0.3333333333333333;0.6666666666666666;1" calcmod="spline" keySplines="0.3 0.1 0.7 0.9;0.3 0.1 0.7 0.9;0.3 0.1 0.7 0.9" begin="-6.666666666666667s" values="M 1205 359 C 1205 534 922 618 747 618 C 572 618 231 534 231 359 C 231 184 572 107 747 107 C 922 107 1205 184 1205 359;M 1342 359 C 1342 564 952 712 747 712 C 542 712 209 564 209 359 C 209 154 542 2 747 2 C 952 2 1342 154 1342 359;M 1489 359 C 1489 612 1000 775 747 775 C 494 775 119 612 119 359 C 119 106 494 -50 747 -50 C 1000 -50 1489 106 1489 359;M 1205 359 C 1205 534 922 618 747 618 C 572 618 231 534 231 359 C 231 184 572 107 747 107 C 922 107 1205 184 1205 359" style="animation-play-state: running; animation-delay: 0s;"></animate>
+    </path>
+    <path d="M 1441 359 C 1441 578 966 754 747 754 C 528 754 179 578 179 359 C 179 140 528 25 747 25 C 966 25 1441 140 1441 359" fill="url(#lg-0.37805322006879627)" opacity="0.43000000000000005" style="animation-play-state: running; animation-delay: 0s;">
+      <animate attributeName="d" dur="10s" repeatCount="indefinite" keyTimes="0;0.3333333333333333;0.6666666666666666;1" calcmod="spline" keySplines="0.3 0.1 0.7 0.9;0.3 0.1 0.7 0.9;0.3 0.1 0.7 0.9" begin="-6.666666666666667s" values="M 1441 359 C 1441 578 966 754 747 754 C 528 754 179 578 179 359 C 179 140 528 25 747 25 C 966 25 1441 140 1441 359;M 1304 359 C 1304 569 957 660 747 660 C 537 660 113 569 113 359 C 113 149 537 33 747 33 C 957 33 1304 149 1304 359;M 1341 359 C 1341 590 978 836 747 836 C 516 836 99 590 99 359 C 99 128 516 -121 747 -121 C 978 -121 1341 128 1341 359;M 1441 359 C 1441 578 966 754 747 754 C 528 754 179 578 179 359 C 179 140 528 25 747 25 C 966 25 1441 140 1441 359" style="animation-play-state: running; animation-delay: 0s;"></animate>
+    </path>
+    <path d="M 1502 359 C 1502 613 1001 759 747 759 C 493 759 87 613 87 359 C 87 105 493 -160 747 -160 C 1001 -160 1502 105 1502 359" fill="url(#lg-0.37805322006879627)" opacity="0.43000000000000005" style="animation-play-state: running; animation-delay: 0s;">
+      <animate attributeName="d" dur="10s" repeatCount="indefinite" keyTimes="0;0.3333333333333333;0.6666666666666666;1" calcmod="spline" keySplines="0.3 0.1 0.7 0.9;0.3 0.1 0.7 0.9;0.3 0.1 0.7 0.9" begin="-6.666666666666667s" values="M 1502 359 C 1502 613 1001 759 747 759 C 493 759 87 613 87 359 C 87 105 493 -160 747 -160 C 1001 -160 1502 105 1502 359;M 1446 359 C 1446 598 986 846 747 846 C 508 846 26 598 26 359 C 26 120 508 -1 747 -1 C 986 -1 1446 120 1446 359;M 1311 359 C 1311 544 932 740 747 740 C 562 740 236 544 236 359 C 236 174 562 60 747 60 C 932 60 1311 174 1311 359;M 1502 359 C 1502 613 1001 759 747 759 C 493 759 87 613 87 359 C 87 105 493 -160 747 -160 C 1001 -160 1502 105 1502 359" style="animation-play-state: running; animation-delay: 0s;"></animate>
+    </path>
+  </g>
+</svg>

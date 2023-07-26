@@ -1,0 +1,40 @@
+@import './variable';
+
+@mixin dflex($fd: '', $ai: '', $jc: '', $g: '') {
+  display: flex;
+  flex-direction: $fd;
+  align-items: $ai;
+  justify-content: $jc;
+  gap: $g;
+}
+@mixin glass($bg: var(--op-bg-visible), $op1: 0.4, $br: 10px) {
+  background: rgba($bg, $op1);
+  border-radius: $br;
+}
+
+@mixin card($bg: var(--bg-visible), $br: 5px) {
+  background: $bg;
+  border-radius: $br;
+}
+
+@mixin blur($blur: 3px) {
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+}
+
+@mixin solid($color1: var(--bg1), $color2: var(--op-primary1), $op1: 0.4) {
+  background: $color1;
+  border-radius: 10px;
+  box-shadow: -2px 4px 24px 1px rgba($color2, $op1);
+}
+
+@mixin op-bg($color: var(--op-bg-visible), $op: 0.2) {
+  background-color: rgba($color, $op);
+}
+
+@mixin shadow-in($color: var(--op-bg-visible), $op: 0.2) {
+  box-shadow: 0px -1px 2px 1px inset rgba($color, $op);
+}
+@mixin shadow($color: var(--op-text-clear), $op: 0.4, $blur: 3px) {
+  box-shadow: 1px 2px $blur rgba($color, $op);
+}

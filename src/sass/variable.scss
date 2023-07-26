@@ -1,0 +1,48 @@
+.x1-2 {
+  font-size: 1.2em;
+}
+.x1-5 {
+  font-size: 1.5em;
+}
+.x2 {
+  font-size: 2em;
+}
+.x2-5 {
+  font-size: 2.5em;
+}
+.x3 {
+  font-size: 3em;
+}
+.font-b {
+  font-weight: bold;
+}
+.line-h {
+  line-height: 1em;
+}
+:root {
+  --p-clear: #4caf50;
+  --p-dull: #2a9235;
+  --p-visible: #0a490a;
+  --accent-clear: #ffc107;
+  --accent-dull: #916400;
+  --text-clear: #333333;
+  --text-dull: #5c5c5c;
+  --bg: #e6fbe3;
+  --bg-visible: #dcf1d9;
+  --bg-dull: #b4c8b1;
+  --blood: #fb0017;
+  --light:#fff;
+   
+  --op-p-clear: 76, 175, 80; //#4CAF50;
+  --op-p-dull: 42, 146, 53; //#2a9235;
+  --op-p-visible: 10, 73, 10; //#0a490a;
+  --op-accent-clear: 255, 193, 7; //#FFC107;
+  --op-accent-dull: 145, 100, 0; //#916400;
+  --op-text-clear: 51, 51, 51; //#333333;
+  --op-text-dull: 92, 92, 92; //#5c5c5c;
+  --op-bg: 230, 251, 227; //#e6fbe3;
+  --op-bg-visible: 220, 241, 217; //#dcf1d9;
+  --op-bg-dull: 180, 200, 177; //#b4c8b1;
+  --op-blood: 251, 0, 23; //#fb0017
+  --op-light:255, 255, 255;
+}

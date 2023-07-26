@@ -1,0 +1,19 @@
+@import '../../../sass/index.scss';
+
+.card{
+    padding: 1em;
+    @include dflex(column,center,'','');
+    @include glass(var(--op-bg-visible),.3);
+    @include shadow();
+    margin-bottom: 1em;
+    color: var(--text3);
+    .card__img{
+        max-width: 6em;
+        margin-bottom: 1em;
+        border-radius: 10px;
+    }
+    .card__name{
+        font-weight: bold;
+    }
+
+}

@@ -1,0 +1,84 @@
+
+@import './sass/index.scss';
+:root {
+  counter-reset: masonry;
+}
+body {
+  background-color: var(--bg);
+  // background-image: url('/public/ok.svg');
+  // background-repeat: no-repeat;
+  // background-position: center center;
+  // background-attachment: fixed;
+  // .qwik__main {
+    
+  // }
+  .btn {
+    @include dflex('', center, '', 0.5em);
+    padding: 0.5em 1em;
+    @include glass();
+    cursor: pointer;
+  }
+  .btn__primary {
+    background-color: rgba(var(--op-accent1), 0.5);
+    transition: ease-out 0.2s;
+    color: var(--text-9);
+    &:hover {
+      background-color: rgba(var(--op-accent1), 0.8);
+      transition: ease-out 0.2s;
+    }
+  }
+  .btn__cancel {
+    background-color: rgba(var(--op-bg2), 0.5);
+    transition: ease-out 0.2s;
+    &:hover {
+      background-color: rgba(var(--op-bg2), 0.8);
+      transition: ease-out 0.2s;
+    }
+  }
+
+  .loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: 4px solid rgba(var(--op-light), 0.8);
+    border-right: 4px solid transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    transition: ease-in 0.2s;
+  }
+  .hidden {
+    visibility: hidden;
+  }
+  .loader {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: 4px solid rgba(var(--op-plus), 0.9);
+    border-right: 4px solid transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    transition: ease-in 0.2s;
+  }
+  .loader::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-bottom: 4px solid rgba(var(--op-accent1), 0.9);
+    border-left: 4px solid transparent;
+  }
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

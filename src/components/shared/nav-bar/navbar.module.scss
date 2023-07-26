@@ -1,0 +1,106 @@
+@import '../../../sass/index.scss';
+body {
+  .nav__content {
+    height: calc(100vh - 3.5em);
+    overflow-x: auto;
+    @include dflex(column, center, space-between);
+    padding: 1em;
+    @include glass(var(--op-p-clear),.7);
+    @include shadow-in(var(--op-p-dull),.6);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+
+    &::-webkit-scrollbar {
+      width: 1px;
+      height: 1px;
+      background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 1px;
+      background-color: transparent;
+    }
+    .wrap__welcom {
+      .brand {
+        padding-bottom: .5em;
+        text-align: center;
+        color: var(--dark);
+      }
+    }
+    .wrap__menu {
+      width: 100%;
+      @include dflex(column, '', '', 0.1em);
+      .items {
+        padding: 0.5em 1em;
+        text-align: center;
+        @include glass(var(--op-light), 0.3);
+        cursor: pointer;
+        color: var(--text-dull);
+        transition: ease-out 0.2s;
+        &:hover {
+          @include glass(var(--op-light), 0.5);
+          @include shadow-in(var(--op-light), 0.5);
+          transition: ease-out 0.2s;
+        }
+        &.active {
+          @include glass(var(--op-light), 0.5);
+          @include shadow-in(var(--op-light), 0.5);
+          transition: ease-out 0.2s;
+        }
+      }
+
+      .categories {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: ease-out 0.2s;
+        &.show {
+          max-height: 500px;
+          opacity: 1;
+          overflow: visible;
+          @include dflex(column, '', '', 0.1em);
+          transition: ease-out 0.2s;
+        }
+        .menu__category {
+          padding: 0.5em 1em;
+          text-align: center;
+          @include glass(var(--op-p-visible), 0.2);
+          cursor: pointer;
+          transition: ease-out 0.2s;
+          &:hover {
+            @include glass(var(--op-p-dull), 0.5);
+            @include shadow-in(var(--op-p-dull), 0.5);
+            transition: ease-out 0.2s;
+          }
+        }
+      }
+    }
+    .footer {
+      font-size: 0.8em;
+      color: var(--text3);
+      .author {
+        @include dflex('', center, '', 0.5em);
+      }
+    }
+  }
+
+  /* breakPoints */
+  @media (min-width: 640px) {
+    /* Small (sm) */
+  }
+  @media (min-width: 768px) {
+    .nav__content {
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      border-radius: 0;
+    }
+  }
+  @media (min-width: 1024px) {
+    /* Large (lg) */
+  }
+  @media (min-width: 1280px) {
+    .nav__content{
+      width: 242px;
+    }
+  }
+}

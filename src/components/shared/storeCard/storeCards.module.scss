@@ -1,0 +1,97 @@
+@import '../../../sass/index.scss';
+.store__card {
+  width: 160px;
+  @include dflex(column, '', '', 0);
+  @include card(var(--bg-visible), 10px);
+  // box-shadow: 1px 2px 3px rgba(var(--op-text-clear),.4);
+  @include shadow();
+  padding: 0.5em;
+  cursor: pointer;
+  &.hidden {
+    opacity: 0;
+  }
+  .img__container {
+    position: relative;
+    text-align: center;
+    margin: auto;
+    .spinner__content {
+      aspect-ratio: 1/1;
+      width: 100%;
+      @include dflex('', center, center);
+    }
+    .image {
+      border-radius: 0.5em;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+  .info__content {
+    @include dflex(column, '', '', 0.3em);
+    .price {
+      margin-top: 0.5em;
+      line-height: 1em;
+    }
+    .info__title {
+      font-weight: bold;
+      line-height: 1em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .info__desc {
+      font-size: 14px;
+      line-height: 1.4;
+      height: 7em; /* Cinco líneas */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 5; /* Cinco líneas */
+      -webkit-box-orient: vertical;
+    }
+  }
+  .footer__card {
+    padding: 0.5em;
+    .btn__card {
+      width: 100%;
+      padding: 0.5em 1em;
+      text-align: center;
+      color: var(--light);
+      background-color: rgba(var(--op-banana), 0.5);
+      border-radius: 10px;
+      @include shadow-in(var(--op-bg1), 0.2);
+      transition: ease-out 0.2s;
+      &:hover {
+        background-color: rgba(var(--op-banana), 0.7);
+        @include shadow-in(var(--op-banana), 0.8);
+        transition: ease-out 0.2s;
+      }
+    }
+  }
+}
+/* breakPoints */
+@media (min-width: 640px) {
+  .store__card {
+    width: 170px;
+    // min-width: 270px;
+    // max-width: 270px;
+  }
+}
+@media (min-width: 768px) {
+  .store__card {
+    width: 188px;
+    // min-width: 188px;
+    // max-width: 188px;
+  }
+}
+@media (min-width: 1024px) {
+  .store__card {
+    // width: 288px;
+
+    //   min-width: 190px;
+    //   max-width: 190px;
+  }
+}
+@media (min-width: 1280px) {
+  /* Extra Large (xl)  */
+}
