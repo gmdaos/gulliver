@@ -1,5 +1,6 @@
-import { component$, useSignal, $ } from '@builder.io/qwik';
+import { component$, useSignal, $, useContext } from '@builder.io/qwik';
 import Style from './select.module.scss';
+import { SizeSelectedContext } from '~/context';
 
 export interface SelectProps {
   sizeObject: any;
@@ -9,7 +10,9 @@ export default component$<SelectProps>((prop) => {
   const optionSelected = useSignal(0);
   const refValueContent = useSignal<Element>();
 
-  
+  //* Actualizar los valores del SizeSelectedContext
+  const sizeSelectContext = useContext(SizeSelectedContext);
+
   //*Click togle selected
   const toggleShowOptions = $(() => {
     isShowOptions.value = !isShowOptions.value;
@@ -21,9 +24,10 @@ export default component$<SelectProps>((prop) => {
     isShowOptions.value = false;
     const valueSelectContent = event.parentElement?.previousElementSibling;
     valueSelectContent!.textContent = event.textContent!;
-    // refValueContent.value!.textContent = event.textContent!
+    sizeSelectContext.value = event.textContent!;
+    sizeSelectContext.id = index;
   });
-
+  
   //*Array de items Select
   const sizes = prop.sizeObject.allSize.map((item: any) => (
     <div

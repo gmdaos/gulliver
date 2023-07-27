@@ -1,5 +1,7 @@
-import { component$, Slot } from '@builder.io/qwik';
+import { component$, Slot, useContextProvider, useStore } from '@builder.io/qwik';
 import type { RequestHandler } from '@builder.io/qwik-city';
+import type { SizeSelected} from '~/context';
+import { SizeSelectedContext } from '~/context';
 // import Navbar from '~/components/shared/nav-bar/navbar';
 // import './style.scss'
 
@@ -15,6 +17,11 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
 };
 
 export default component$(() => {
+  
+//* select context: child context
+const selectValue = useStore<SizeSelected>({ value: 'cargando...' });
+  useContextProvider(SizeSelectedContext, selectValue);
+//*
   return (
     <>
         <Slot />

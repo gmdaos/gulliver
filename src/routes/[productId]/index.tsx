@@ -5,16 +5,18 @@ import {
   useStore,
   $,
   useTask$,
-  useVisibleTask$,
+  useContext,
 } from '@builder.io/qwik';
 import './productCounter.scss';
 import { getAllProducts } from '~/helpers/getAllProducts';
 import { routeLoader$ } from '@builder.io/qwik-city';
 import { useCounter } from '~/hooks/useCounter';
 import Select from '~/components/shared/select/select';
+import { SizeSelectedContext } from '~/context';
 
 export const useData = routeLoader$(async ({ params }) => {
   const allProducts = await getAllProducts();
+  console.log(params.optionSelected);
   const objProducts = {
     prod: allProducts as Array<any>,
     idCurrent: Number(params.productId),
@@ -40,15 +42,17 @@ export default component$(() => {
     image: '',
     rating: {},
   });
-  const id = dataProduct.value.idCurrent;
-  const product = dataProduct.value.prod.find((obj) => obj.id === id);
-  currenteProduct.id = product.id;
-  currenteProduct.title = product.title;
-  currenteProduct.price = product.price;
-  currenteProduct.description = product.description;
-  currenteProduct.category = product.category;
-  currenteProduct.image = product.image;
-  currenteProduct.rating = product.rating;
+  useTask$(() => {
+    const id = dataProduct.value.idCurrent;
+    const product = dataProduct.value.prod.find((obj) => obj.id === id);
+    currenteProduct.id = product.id;
+    currenteProduct.title = product.title;
+    currenteProduct.price = product.price;
+    currenteProduct.description = product.description;
+    currenteProduct.category = product.category;
+    currenteProduct.image = product.image;
+    currenteProduct.rating = product.rating;
+  });
 
   const { counter, increase, decrease } = useCounter(0);
 
@@ -62,19 +66,10 @@ export default component$(() => {
     ],
   });
 
-  const refValueSelect = useSignal<HTMLElement>();
-  const valueSelect = useSignal('');
-
-useVisibleTask$(()=>{ 
-  valueSelect.value = refValueSelect.value!.lastElementChild!.firstElementChild!.textContent!
- })
-   useTask$(({track}) => {
-    track(()=>{ valueSelect.value })
-    console.log(valueSelect.value);
-    // const value = refValueSelect.value!.lastElementChild!.firstElementChild;
-    // valueSelect.value = value!.textContent!;
-  });
-  
+//* usando SelectContext
+const selectOptionValue = useContext(SizeSelectedContext);
+console.log(selectOptionValue.id +": "+ selectOptionValue.value);
+//*
 
   return (
     <div class="qwik__product">
@@ -106,14 +101,14 @@ useVisibleTask$(()=>{
               </div>
               <div class="flex__table">
                 <div class="color__section">
-                  <img src={currenteProduct.image} alt="Negro" />
-                  <img src={currenteProduct.image} alt="Amarillo" />
-                  <img src={currenteProduct.image} alt="verde" />
-                  <img src={currenteProduct.image} alt="Blanco" />
-                  <img src={currenteProduct.image} alt="Purpura" />
-                  <img src={currenteProduct.image} alt="Lila" />
+                  <div class='color__item active'><img src={currenteProduct.image} alt="Negro" /></div>
+                  <div class='color__item'><img src={currenteProduct.image} alt="Amarillo" /></div>
+                  <div class='color__item'><img src={currenteProduct.image} alt="verde" /></div>
+                  <div class='color__item'><img src={currenteProduct.image} alt="Blanco" /></div>
+                  <div class='color__item'><img src={currenteProduct.image} alt="Purpura" /></div>
+                  <div class='color__item'><img src={currenteProduct.image} alt="Lila" /></div>
                 </div>
-                <div ref={refValueSelect} class="size__section">
+                <div class="size__section">
                   <span class="size">
                     Talla <sup>*</sup>
                   </span>

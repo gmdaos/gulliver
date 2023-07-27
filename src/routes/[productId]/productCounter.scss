@@ -37,8 +37,9 @@ body {
               bottom: 0px;
               overflow: visible;
               padding: 1em;
-              @include glass(var(--op-bg-visible), 0.7);
+              @include glass(var(--op-p-dull), 0.6);
               @include blur();
+              color: var(--light);
               transition: ease-out 0.2s;
             }
           }
@@ -80,12 +81,25 @@ body {
             @include dflex(column, '', '', 0.5em);
 
             .color__section {
-              @include dflex('', '', '', 0.5em);
+              @include dflex('', '', '', 0.4em);
               flex-wrap: wrap;
               padding-right: 0.5em;
+              .color__item {
+                border-radius: 10px;
+                overflow: hidden;
+                border: 1px solid var(--bg-dull);
+                cursor: pointer;
+                transition: ease-out 0.2s;
+                &:hover,
+                &.active {
+                  border: 1px solid var(--p-clear);
+                  box-shadow: 0px 0px 2px 2px var(--p-clear);
+                  transition: ease-out 0.2s;
+                }
+              }
               img {
                 width: 4em;
-                border-radius: 5px;
+                // border-radius: 5px;
                 aspect-ratio: 1/1;
                 object-fit: cover;
               }
@@ -107,7 +121,7 @@ body {
             }
             .size__section,
             .quantety__section {
-              @include dflex('',center,'',1em);
+              @include dflex('', center, '', 1em);
             }
             .quantety__section {
               .counter {
@@ -115,7 +129,7 @@ body {
                 .view__counter {
                   padding: 0.5em 1em;
                   background-color: var(--bg-visible);
-                  border: 1px solid var(--bg-dull)
+                  border: 1px solid var(--bg-dull);
                 }
                 .decress,
                 .increment {
@@ -125,10 +139,10 @@ body {
                   border: 1px solid var(--bg-dull);
                   color: var(--p-clear);
                   cursor: pointer;
-                  transition: ease-out .2s;
-                  &:hover{
+                  transition: ease-out 0.2s;
+                  &:hover {
                     background-color: rgba(var(--op-p-clear), 0.3);
-                    transition: ease-out .2s;
+                    transition: ease-out 0.2s;
                   }
                 }
                 .decress {
