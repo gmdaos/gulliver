@@ -1,12 +1,11 @@
 @import './variable.scss';
-@import url('https://fonts.googleapis.com/css2?family=Konkhmer+Sleokchher&family=Poppins&display=swap');
- @import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@500&family=Roboto:wght@400;500&display=swap');
 
 /* Definimos las Custom properties */
 :root {
 
   /* Tipografía */
-  --font-main:'Poppins', sans-serif;
+  --font-main:'Nunito sans', sans-serif;
   --font-brand: 'Carter One', cursive;
   // font-family: 'Carter One', cursive;
 }
@@ -140,6 +139,7 @@ body {
   min-height: 100vh;
   font-size: 100%;
   font-family: var(--font-main);
+  scroll-behavior: smooth;
   // color: var(--negro);
   /* (Opcional) */
   // hyphens: auto;

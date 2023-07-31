@@ -5,8 +5,8 @@ body {
     overflow-x: auto;
     @include dflex(column, center, space-between);
     padding: 1em;
-    @include glass(var(--op-p-clear),.7);
-    @include shadow-in(var(--op-p-dull),.6);
+    @include glass(var(--op-bg-dull), 0.9);
+    @include shadow-in(var(--op-bg-dull), 0.6);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
 
@@ -21,7 +21,7 @@ body {
     }
     .wrap__welcom {
       .brand {
-        padding-bottom: .5em;
+        padding-bottom: 0.5em;
         text-align: center;
         color: var(--dark);
       }
@@ -31,19 +31,25 @@ body {
       @include dflex(column, '', '', 0.1em);
       .items {
         padding: 0.5em 1em;
-        text-align: center;
         @include glass(var(--op-light), 0.3);
         cursor: pointer;
-        color: var(--text-dull);
+        @include dflex('', center, space-between);
+        color: var(--p-visible);
         transition: ease-out 0.2s;
         &:hover {
           @include glass(var(--op-light), 0.5);
           @include shadow-in(var(--op-light), 0.5);
           transition: ease-out 0.2s;
+          color:var(--p-clear)
         }
         &.active {
           @include glass(var(--op-light), 0.5);
           @include shadow-in(var(--op-light), 0.5);
+          transition: ease-out 0.2s;
+          color:var(--p-clear)
+        }
+        .chevron {
+          transform: rotate(180deg);
           transition: ease-out 0.2s;
         }
       }
@@ -63,12 +69,12 @@ body {
         .menu__category {
           padding: 0.5em 1em;
           text-align: center;
-          @include glass(var(--op-p-visible), 0.2);
+          @include glass(var(--op-bg-visible), 0.5);
           cursor: pointer;
           transition: ease-out 0.2s;
           &:hover {
-            @include glass(var(--op-p-dull), 0.5);
-            @include shadow-in(var(--op-p-dull), 0.5);
+            @include glass(var(--op-bg), 0.8);
+            @include shadow-in(var(--op-bg), 0.8);
             transition: ease-out 0.2s;
           }
         }
@@ -99,7 +105,7 @@ body {
     /* Large (lg) */
   }
   @media (min-width: 1280px) {
-    .nav__content{
+    .nav__content {
       width: 242px;
     }
   }

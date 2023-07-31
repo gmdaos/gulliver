@@ -1,0 +1,81 @@
+@import '../../sass/index.scss';
+
+body {
+  .main__account {
+    padding: 1em;
+    .account__info {
+      @include dflex(column, '', '', 0.5em);
+      @include card();
+      @include shadow();
+      .account__info-box {
+        @include dflex('', center, center, 0.5em);
+        padding: 0.8em;
+        .account__info-avatar img {
+          height: 4em;
+          width: 4em;
+          border-radius: 50%;
+          border: 2px solid var(--bg-clear);
+        }
+        .account__info-items {
+          @include dflex(column, center, center);
+          padding: 0.7em 0.5em;
+          color: var(--text-dull);
+          cursor: pointer;
+          transition: ease-out 0.2s;
+          &:hover {
+            transition: ease-out 0.2s;
+            color: var(--p-visible);
+            @include glass(var(--op-bg-dull), 0.5, 5px);
+          }
+        }
+      }
+    }
+    .account__order {
+      padding: 0 1em;
+      @include card();
+      @include shadow();
+      margin-top: 1em;
+      .accoun__order-view {
+        @include dflex(row, center, space-between);
+        padding: 0.5em 0;
+      }
+      .accoun__order-content {
+        @include dflex('', '', space-between);
+        padding: 1em 0;
+        color: var(--text-dull);
+        .account__order-status {
+          @include dflex(column, center);
+          cursor: pointer;
+          padding: 0.5em;
+          border-radius: 5px;
+          transition: ease-out 0.2s;
+          &:hover {
+            transition: ease-out 0.2s;
+            color: var(--p-visible);
+            @include glass(var(--op-bg-dull), 0.5, 5px);
+            @include shadow-in(var(--op-bg-dull),.8)
+          }
+        }
+      }
+    }
+    .account__menu {
+      @include card();
+      @include shadow();
+      margin-top: 1em;
+      overflow: hidden;
+      ul li {
+        @include dflex('', center, space-between);
+        padding: 0.5em 1em;
+        color: var(--text-dull);
+        transition: ease-out 0.2s;
+        &:hover {
+          @include glass(var(--op-bg-dull), 0.5);
+          @include shadow-in(var(--op-bg-dull), 0.8);
+          border-radius: unset;
+          transition: ease-out 0.2s;
+          color: var(--light);
+        }
+      }
+    }
+  }
+}

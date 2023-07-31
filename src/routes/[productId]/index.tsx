@@ -13,10 +13,10 @@ import { routeLoader$ } from '@builder.io/qwik-city';
 import { useCounter } from '~/hooks/useCounter';
 import Select from '~/components/shared/select/select';
 import { SizeSelectedContext } from '~/context';
+// import styled from '@emotion/styled';
 
 export const useData = routeLoader$(async ({ params }) => {
   const allProducts = await getAllProducts();
-  console.log(params.optionSelected);
   const objProducts = {
     prod: allProducts as Array<any>,
     idCurrent: Number(params.productId),
@@ -42,6 +42,7 @@ export default component$(() => {
     image: '',
     rating: {},
   });
+
   useTask$(() => {
     const id = dataProduct.value.idCurrent;
     const product = dataProduct.value.prod.find((obj) => obj.id === id);
@@ -66,18 +67,45 @@ export default component$(() => {
     ],
   });
 
-//* usando SelectContext
-const selectOptionValue = useContext(SizeSelectedContext);
-console.log(selectOptionValue.id +": "+ selectOptionValue.value);
-//*
+  //* usando SelectContext
+  const selectOptionValue = useContext(SizeSelectedContext);
+  console.log(selectOptionValue.id + ': ' + selectOptionValue.value);
+  //*
 
+  //*Mouse hover Event
+  const refImage = useSignal<HTMLElement>();
+
+  const handlerMouseover = $(() => {
+    refImage.value!.classList.add('over');
+  });
+  const handlerMouseout = $(() => {
+    refImage.value!.classList.remove('over');
+  });
+
+  const handlerMousemove = $((event: any) => {
+    refImage.value!.style.transformOrigin =
+      ((event.x - refImage.value!.offsetLeft) / refImage.value!.clientWidth) *
+        100 +
+      '%' +
+      ((event.y - refImage.value!.offsetTop) / refImage.value!.clientHeight) *
+        100 +
+      '%';
+  });
   return (
     <div class="qwik__product">
-      <main class="main__content">
+      <main class="main__product">
         <div class="detail__content">
           <section class="section__img">
             <div class="info__detail">
-              <img src={currenteProduct.image} alt="" />
+              <img
+                ref={refImage}
+                class="img__product"
+                src={currenteProduct.image}
+                alt={currenteProduct.title}
+                onMouseOver$={() => handlerMouseover()}
+                onMouseOut$={() => handlerMouseout()}
+                onMouseMove$={(event) => handlerMousemove(event as any)}
+              />
               <span
                 class={['drop__description', isShowDetail.value ? 'show' : '']}
               >
@@ -95,18 +123,31 @@ console.log(selectOptionValue.id +": "+ selectOptionValue.value);
                 s/ {currenteProduct.price} por unidad
               </span>
             </article>
+            <hr class='separator'/>
             <article class="color__content">
               <div class="available__text x1-2">
                 Colores y tallas disponibles
               </div>
               <div class="flex__table">
                 <div class="color__section">
-                  <div class='color__item active'><img src={currenteProduct.image} alt="Negro" /></div>
-                  <div class='color__item'><img src={currenteProduct.image} alt="Amarillo" /></div>
-                  <div class='color__item'><img src={currenteProduct.image} alt="verde" /></div>
-                  <div class='color__item'><img src={currenteProduct.image} alt="Blanco" /></div>
-                  <div class='color__item'><img src={currenteProduct.image} alt="Purpura" /></div>
-                  <div class='color__item'><img src={currenteProduct.image} alt="Lila" /></div>
+                  <div class="color__item active">
+                    <img src={currenteProduct.image} alt="Negro" />
+                  </div>
+                  <div class="color__item">
+                    <img src={currenteProduct.image} alt="Amarillo" />
+                  </div>
+                  <div class="color__item">
+                    <img src={currenteProduct.image} alt="verde" />
+                  </div>
+                  <div class="color__item">
+                    <img src={currenteProduct.image} alt="Blanco" />
+                  </div>
+                  <div class="color__item">
+                    <img src={currenteProduct.image} alt="Purpura" />
+                  </div>
+                  <div class="color__item">
+                    <img src={currenteProduct.image} alt="Lila" />
+                  </div>
                 </div>
                 <div class="size__section">
                   <span class="size">
@@ -142,10 +183,12 @@ console.log(selectOptionValue.id +": "+ selectOptionValue.value);
               <span class="icon glas-location_on"></span> Cusco
             </div>
           </article>
+          <hr class='separator'/>
           <article class="info__to-shiping">
             <p class="x1-2 line-h">Información de envío</p>
             <div class="price__shipping">Costo de envío a Cusco: S/15.00</div>
           </article>
+          <hr class='separator'/>
           <article class="recomendation__shiping">
             <p class="x1-2 line-h">Recomendaciones de envío</p>
             <p>
@@ -153,6 +196,7 @@ console.log(selectOptionValue.id +": "+ selectOptionValue.value);
               temporibus sed quos recusandae veritatis iure provident
             </p>
           </article>
+          <hr class='separator'/>
           <article class="quantity__shiping">
             <p class="x1-2">Cantidad de productos</p>
             <span>Color: Rojo - 2 unidades</span>

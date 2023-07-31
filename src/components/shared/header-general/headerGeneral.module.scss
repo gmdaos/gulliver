@@ -1,0 +1,18 @@
+@import '../../../sass/index.scss';
+body {
+  .headerGeneral__ontent {
+    width: 100%;
+    height: 4em;
+    @include dflex(row, center, space-between);
+    background-color: var(--bg);
+    @include shadow();
+    padding: 1em;
+    .btn__brandSection {
+      @include dflex('', center, '', 0.5em);
+      .home{color: var(--p-dull);}
+      .brand{
+        color: var(--p-clear);
+      }
+    }
+  }
+}
