@@ -28,11 +28,12 @@ export const useTheMovies = routeLoader$(async () => {
 
 export const useAllproducts = routeLoader$(async () => {
   const response = await getAllProducts();
+  // console.log(response);
   return response;
 });
 
 export default component$(() => {
-  const urlItem = useSignal('/page');
+  // const urlItem = useSignal('/page');
   const navigate = useNavigate();
   // const data = useStore({value:''})
 
@@ -62,7 +63,7 @@ export default component$(() => {
     }
   });
 
-//* Detectar el redimencionamiento
+  //* Detectar el redimencionamiento
   useOnWindow(
     'resize',
     $(() => {
@@ -85,6 +86,7 @@ export default component$(() => {
             </Link>
           </div>
           <div class="liquidation__containe">
+
             {/* {movies.value.map((movie: Movies) => {
               return (
                 <Link key={movie.id} href="/productCounter/">
@@ -99,17 +101,11 @@ export default component$(() => {
                 </Link>
               );
             })} */}
-            {allProducts.value.map((product: any) => {
+
+            {allProducts.value.map((product: any, index: number) => {
               return (
-                <Link key={product.id} onClick$={() => goToProduct(product.id)}>
-                  <StoreCard
-                    poster_path={product.image}
-                    release_date={product.category}
-                    title={product.title}
-                    overview={product.description}
-                    vote_average={product.price}
-                    urlItem={urlItem.value}
-                  ></StoreCard>
+                <Link key={index} onClick$={() => goToProduct(product.id)}>
+                  <StoreCard dataProduct={product}></StoreCard>
                 </Link>
               );
             })}

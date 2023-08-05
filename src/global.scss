@@ -22,19 +22,30 @@ body {
     cursor: pointer;
   }
   .btn__primary {
-    background-color: rgba(var(--op-accent1), 0.5);
+    background-color: rgba(var(--op-p-clear), 0.5);
     transition: ease-out 0.2s;
-    color: var(--text-9);
+    color: var(--text-clear);
     &:hover {
-      background-color: rgba(var(--op-accent1), 0.8);
+      background-color: rgba(var(--op-p-clear), 0.8);
       transition: ease-out 0.2s;
+      
     }
   }
+  .btn__outline{
+    border: 1px solid var(--bg-dull);
+    &:disabled{
+      color: var(--bg-dull);
+      cursor: unset;
+    }
+  }
+
+  
+
   .btn__cancel {
-    background-color: rgba(var(--op-bg2), 0.5);
+    background-color: rgba(var(--op-bg-dull), 0.5);
     transition: ease-out 0.2s;
     &:hover {
-      background-color: rgba(var(--op-bg2), 0.8);
+      background-color: rgba(var(--op-bg-dull), 0.8);
       transition: ease-out 0.2s;
     }
   }

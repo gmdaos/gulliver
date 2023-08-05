@@ -51,7 +51,6 @@ export default component$(() => {
             Faboritos <span class="icon icon-chevronRight"></span>
           </li>
         </Link>
-
         <Link>
           <li
             class={[style.items, activeItem.value === 2 ? style.active : '']}
@@ -83,12 +82,14 @@ export default component$(() => {
         >
           Liquidación <span class="icon icon-chevronRight"></span>
         </li>
-        <li
-          onClick$={() => eventItemHandler(4)}
-          class={[style.items, activeItem.value === 4 ? style.active : '']}
-        >
-          Carrito <span class="icon icon-chevronRight"></span>
-        </li>
+        <Link href='/shoppingCarrt/'>
+          <li
+            onClick$={() => eventItemHandler(4)}
+            class={[style.items, activeItem.value === 4 ? style.active : '']}
+          >
+            Carrito <span class="icon icon-chevronRight"></span>
+          </li>
+        </Link>
       </ul>
       <footer class={style.footer}>
         <div class={style.foot__item}>Soporte</div>

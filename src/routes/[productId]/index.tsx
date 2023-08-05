@@ -13,6 +13,8 @@ import { routeLoader$ } from '@builder.io/qwik-city';
 import { useCounter } from '~/hooks/useCounter';
 import Select from '~/components/shared/select/select';
 import { SizeSelectedContext } from '~/context';
+import { type DataOrder } from '~/interfaces/dataOrder';
+import { Product } from '~/interfaces/product';
 // import styled from '@emotion/styled';
 
 export const useData = routeLoader$(async ({ params }) => {
@@ -29,19 +31,18 @@ export default component$(() => {
   const isShowDetail = useSignal(false);
   const dataProduct = useData();
 
+  //*Seleccionar color
+  const indexColor = useSignal(0)
+  const colorSelected = useSignal('')
+
+  //*array para las ordenes
+  const totalOrder = useStore<{ array: DataOrder[] }>({ array: [] })
+
   const toggleShowDetail = $(() => {
     isShowDetail.value = !isShowDetail.value;
   });
 
-  const currenteProduct = useStore({
-    id: 0,
-    title: '',
-    price: 0,
-    description: '',
-    category: '',
-    image: '',
-    rating: {},
-  });
+  const currenteProduct = useStore<Product>({} as Product);
 
   useTask$(() => {
     const id = dataProduct.value.idCurrent;
@@ -85,12 +86,42 @@ export default component$(() => {
   const handlerMousemove = $((event: any) => {
     refImage.value!.style.transformOrigin =
       ((event.x - refImage.value!.offsetLeft) / refImage.value!.clientWidth) *
-        100 +
+      100 +
       '%' +
       ((event.y - refImage.value!.offsetTop) / refImage.value!.clientHeight) *
-        100 +
+      100 +
       '%';
   });
+  const thereIsNotfication = useSignal(true)
+
+  //*Se agrega la orden para su posterior pago
+  const addOrder = $(() => {
+    if (selectOptionValue.value === '' && counter.value <= 0) {
+      thereIsNotfication.value = false;
+    } else if ((selectOptionValue.value !== '') && (counter.value > 0)) {
+      thereIsNotfication.value = true;
+    } else {
+      thereIsNotfication.value = false;
+    }
+
+    if (thereIsNotfication.value) {
+      const dataOrder = {
+        productColor: colorSelected.value,
+        productQuantity: counter.value,
+        productSize: selectOptionValue.value
+      } as DataOrder
+      totalOrder.array.push(dataOrder)
+    }
+    colorSelected.value = '';
+
+    // counter.value=0,
+  })
+
+  const colors = ['Rojo', 'Verde', 'Amarillo', 'Blanco', 'Celeste', 'Rosado', 'Beige']
+  const handleClickImage = $((ev: HTMLImageElement, index: number) => {
+    colorSelected.value = ev.alt;
+    indexColor.value = index
+  })
   return (
     <div class="qwik__product">
       <main class="main__product">
@@ -123,31 +154,20 @@ export default component$(() => {
                 s/ {currenteProduct.price} por unidad
               </span>
             </article>
-            <hr class='separator'/>
+            <hr class='separator' />
             <article class="color__content">
               <div class="available__text x1-2">
                 Colores y tallas disponibles
               </div>
               <div class="flex__table">
                 <div class="color__section">
-                  <div class="color__item active">
-                    <img src={currenteProduct.image} alt="Negro" />
-                  </div>
-                  <div class="color__item">
-                    <img src={currenteProduct.image} alt="Amarillo" />
-                  </div>
-                  <div class="color__item">
-                    <img src={currenteProduct.image} alt="verde" />
-                  </div>
-                  <div class="color__item">
-                    <img src={currenteProduct.image} alt="Blanco" />
-                  </div>
-                  <div class="color__item">
-                    <img src={currenteProduct.image} alt="Purpura" />
-                  </div>
-                  <div class="color__item">
-                    <img src={currenteProduct.image} alt="Lila" />
-                  </div>
+                  {
+                    colors.map((color: string, index: number) => (
+                      <div key={index} class={['color__item', indexColor.value === index ? 'active' : '']}>
+                        <img onClick$={(ev) => handleClickImage(ev.target as HTMLImageElement, index as number)} src={currenteProduct.image} alt={color} />
+                      </div>
+                    ))
+                  }
                 </div>
                 <div class="size__section">
                   <span class="size">
@@ -171,6 +191,15 @@ export default component$(() => {
                     ></span>
                   </div>
                 </div>
+                <div class='recomendation'>
+                  <div>
+                    {
+                      thereIsNotfication.value ? '' : (<p> Elija una talla y agregue cantidad</p>)
+                    }
+
+                  </div>
+                  <button onClick$={addOrder} class='btn btn__outline'>Agregar pedido</button>
+                </div>
               </div>
             </article>
           </section>
@@ -183,12 +212,12 @@ export default component$(() => {
               <span class="icon glas-location_on"></span> Cusco
             </div>
           </article>
-          <hr class='separator'/>
+          <hr class='separator' />
           <article class="info__to-shiping">
             <p class="x1-2 line-h">Información de envío</p>
             <div class="price__shipping">Costo de envío a Cusco: S/15.00</div>
           </article>
-          <hr class='separator'/>
+          <hr class='separator' />
           <article class="recomendation__shiping">
             <p class="x1-2 line-h">Recomendaciones de envío</p>
             <p>
@@ -196,18 +225,21 @@ export default component$(() => {
               temporibus sed quos recusandae veritatis iure provident
             </p>
           </article>
-          <hr class='separator'/>
+          <hr class='separator' />
           <article class="quantity__shiping">
             <p class="x1-2">Cantidad de productos</p>
-            <span>Color: Rojo - 2 unidades</span>
-            <span>Color: Verde - 3 unidades</span>
-            <span>Color: Blanco - 4 unidades</span>
+            <div class='order__content'>
+              {
+                totalOrder.array.map((order: DataOrder, index: number) => (
+                  <p key={index}>Color: {order.productColor} - Talla: {order.productSize}, {order.productQuantity} unidades</p>
+                ))
+              }
+            </div>
             <p class="total__unit font-b">Total: 9 unidades</p>
             <p class="total__price font-b">costo Total: s/225.00</p>
           </article>
           <article class="btn__content">
             <button class="btn__add">
-              {' '}
               <span class="icon icon-cart-shopping"></span>Agregar al carrito
             </button>
             <button class="btn__buy">Comprar ahora</button>
@@ -217,3 +249,13 @@ export default component$(() => {
     </div>
   );
 });
+
+
+
+
+
+
+
+
+
+

@@ -1,53 +1,34 @@
-/* breakPoints */
-@media (min-width: 640px) {
-  /* Small (sm) */
-}
-@media (min-width: 768px) {
-  .masonry__layout {
-    box-sizing: border-box;
-    --columns: 1;
-    --gap: 2em;
-    display: grid;
-    grid-template-columns: repeat(var(--columns), 1fr);
-    grid-gap: var(--gap);
-    padding: 2em;
-  }
-
-  .masonry__layout > div > img,
-  .masonry__layout > div > div {
-    width: 100%;
-    margin-bottom: 2em;
-  }
-
-  .masonry__layout.columns__1 {
-    --columns: 1;
-  }
-
-  .masonry__layout.columns__2 {
-    --columns: 2;
-  }
-
-  .masonry__layout.columns__3 {
-    --columns: 3;
-  }
-
-  .masonry__layout.columns__4 {
-    --columns: 4;
-  }
-  .masonry {
-    .masonry__items {
-      .grid__item {
-        img {
-          width: min(200px,250px);
-          // aspect-ratio: 1/1;
-        }
+body {
+  .inputs{
+    padding: 1em;
+    label{
+      padding: .5em;
+      padding-left: 1.5em;
+      position: relative;
+      .check{
+        position: absolute;
+        width: 1.2em;
+        height: 1.2em;
+        border-radius: 20px;
+        background-color: gray;
+        left: 1px;
+      }
+      input:checked~.check{
+        background-color: goldenrod;
       }
     }
   }
-}
-@media (min-width: 1024px) {
-  /* Large (lg) */
-}
-@media (min-width: 1280px) {
-  /* Extra Large (xl)  */
+
+  /* breakPoints */
+  @media (min-width: 640px) {
+    /* Small (sm) */
+  }
+  @media (min-width: 768px) {
+  }
+  @media (min-width: 1024px) {
+    /* Large (lg) */
+  }
+  @media (min-width: 1280px) {
+    /* Extra Large (xl)  */
+  }
 }

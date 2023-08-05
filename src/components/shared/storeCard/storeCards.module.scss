@@ -25,6 +25,29 @@
       object-fit: cover;
       object-position: top;
     }
+    .btn__shared,
+    .btn__favorite {
+      position: absolute;
+      @include dflex('', center, center);
+      padding: 0.5em 0.5em;
+      background-color: rgba(var(--op-light), 0.7);
+      color: rgba(var(--op-text-clear), 6);
+      border-radius: 0.3em;
+      right: -4px;
+      cursor: pointer;
+      z-index: 1;
+    }
+    .btn__shared {
+      top: 30%;
+    }
+    .btn__favorite {
+      top: 60%;
+      &:hover,
+      &.active {
+        color: var(--blood);
+        @include shadow-in(var(--op-light), 7);
+      }
+    }
   }
   .info__content {
     @include dflex(column, '', '', 0.3em);
@@ -42,13 +65,16 @@
     .info__desc {
       font-size: 14px;
       line-height: 1.4;
-      height: 7em; /* Cinco líneas */
+      // height: 7em; /* Cinco líneas */
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      -webkit-line-clamp: 5; /* Cinco líneas */
+      -webkit-line-clamp: 2; /* Cinco líneas */
       -webkit-box-orient: vertical;
     }
+  }
+  .card__btnContent {
+    @include dflex('', center, space-around);
   }
   .footer__card {
     padding: 0.5em;

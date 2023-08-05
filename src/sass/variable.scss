@@ -19,6 +19,13 @@
 .line-h {
   line-height: 1em;
 }
+.devider-v{
+  width: 2px;
+  height: 1.2em;
+  background-color: var(--bg-dull);
+  border-radius: 3px;
+  margin: 0 .5em;
+}
 :root {
   --p-clear: #4caf50;
   --p-dull: #2a9235;

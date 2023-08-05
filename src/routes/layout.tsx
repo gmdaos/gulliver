@@ -1,9 +1,9 @@
 import { component$, Slot, useContextProvider, useStore } from '@builder.io/qwik';
 import type { RequestHandler } from '@builder.io/qwik-city';
-import type { SizeSelected} from '~/context';
-import { SizeSelectedContext } from '~/context';
-// import Navbar from '~/components/shared/nav-bar/navbar';
-// import './style.scss'
+
+import { SizeSelectedContext, type SizeSelected, FavoriteItems } from '~/context';
+import type{ ListProducts } from '~/interfaces/product';
+
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   // Control caching for this request for best performance and to reduce hosting costs:
@@ -17,14 +17,19 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
 };
 
 export default component$(() => {
-  
-//* select context: child context
-const selectValue = useStore<SizeSelected>({ value: 'cargando...' });
+
+  //* select context: child context
+  const selectValue = useStore<SizeSelected>({ value: '', id: 0 });
   useContextProvider(SizeSelectedContext, selectValue);
-//*
+  //*
+
+  //*Lista de favoritos
+  const favorites = useStore<ListProducts>({ array: [] })
+  useContextProvider(FavoriteItems, favorites)
+  //*fin lista de favoritos
   return (
     <>
-        <Slot />
+      <Slot />
     </>
   );
 });

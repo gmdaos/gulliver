@@ -8,9 +8,9 @@ export interface HeaderProps {
   widthSize: number;
 }
 
-export default component$<HeaderProps>((prop) => {
+export default component$<HeaderProps>(({toggleNav,widthSize}) => {
   return (
-    <div style={`width:${prop.widthSize + 7}px`} class={style.header__content}>
+    <div style={`width:${widthSize + 7}px`} class={style.header__content}>
       <div class={style.brand}>Gulliver</div>
       <div class={style.menu__search}>
         <input
@@ -21,7 +21,7 @@ export default component$<HeaderProps>((prop) => {
         />
         <span class={[style.btn__search, 'icon', 'icon-search']}></span>
         <span
-          onClick$={prop.toggleNav}
+          onClick$={toggleNav}
           class={[style.btn__menu, 'icon', 'icon-menu']}
         ></span>
       </div>

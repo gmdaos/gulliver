@@ -1,81 +1,286 @@
 @import '../../sass/index.scss';
 
 body {
-  .main__account {
-    padding: 1em;
-    .account__info {
-      @include dflex(column, '', '', 0.5em);
-      @include card();
-      @include shadow();
-      .account__info-box {
-        @include dflex('', center, center, 0.5em);
-        padding: 0.8em;
-        .account__info-avatar img {
-          height: 4em;
-          width: 4em;
-          border-radius: 50%;
-          border: 2px solid var(--bg-clear);
+  .qwik__account {
+    position: relative;
+    .main__account {
+      padding: 1em;
+      .section__main {
+        .account__info {
+          @include dflex(column, '', '', 0.5em);
+          @include card();
+          @include shadow();
+          .account__info-box {
+            @include dflex('', center, center, 0.5em);
+            padding: 0.8em;
+            .account__info-avatar img {
+              height: 4em;
+              width: 4em;
+              border-radius: 50%;
+              border: 2px solid var(--bg-clear);
+            }
+            .account__info-items {
+              @include dflex(column, center, center);
+              padding: 0.7em 0.5em;
+              color: var(--text-dull);
+              cursor: pointer;
+              transition: ease-out 0.2s;
+              &:hover {
+                transition: ease-out 0.2s;
+                color: var(--p-visible);
+                @include glass(var(--op-bg-dull), 0.5, 5px);
+              }
+            }
+          }
         }
-        .account__info-items {
-          @include dflex(column, center, center);
-          padding: 0.7em 0.5em;
+        .account__order {
+          padding: 0 1em;
+          @include card();
+          @include shadow();
+          margin-top: 1em;
+          .accoun__order-view {
+            @include dflex(row, center, space-between);
+            padding: 0.5em 0;
+          }
+          .accoun__order-content {
+            @include dflex('', '', space-between);
+            padding: 1em 0;
+            color: var(--text-dull);
+            .account__order-status {
+              @include dflex(column, center);
+              cursor: pointer;
+              padding: 0.5em;
+              border-radius: 5px;
+              transition: ease-out 0.2s;
+              &:hover {
+                transition: ease-out 0.2s;
+                color: var(--p-visible);
+                @include glass(var(--op-bg-dull), 0.5, 5px);
+                @include shadow-in(var(--op-bg-dull), 0.8);
+              }
+            }
+          }
+        }
+        .account__favorites {
+          @include card();
+          @include shadow();
+          margin-top: 1em;
+          overflow: hidden;
+          margin-bottom: 4em;
+          display: none;
+          &.show{
+            display: block
+          }
+          .favorites__navbar {
+            @include dflex('', center, space-between);
+            padding: 1em;
+            .navbar__items {
+              @include dflex('', center, '', 0.5em);
+              &.btn-edit,
+              .back {
+                cursor: pointer;
+              }
+            }
+          }
+          .favorites__list-container {
+            @include dflex(column, '', '', 0.8em);
+            padding: 1em 0.4em;
+            position: relative;
+            .checkbox {
+              display: none;
+              &.show {
+                display: block;
+                position: relative;
+                height: 1.5em;
+                width: 1.5em;
+                border-radius: 20px;
+                border: 2px solid var(--bg-dull);
+                background-color: var(--bg-visible);
+                cursor: pointer;
+              }
+            }
+            input:checked ~ .checkbox.show {
+              border: 2px solid var(--blood);
+              background-color: rgba(var(--op-blood), 0.6);
+            }
+            input:checked ~ .checkbox.show::before {
+              content: '¬';
+              position: absolute;
+              top: -7px;
+              left: 4px;
+              font-size: 25px;
+              font-weight: 600;
+              color: var(--light);
+              transform: rotate(130deg);
+            }
+            .favorites__list-items {
+              @include dflex(row, center, space-between, 0.5em);
+              @include card(var(--bg));
+              padding: 0.4em;
+              overflow: hidden;
+              .list__item-img img {
+                width: 90px;
+                height: 90px;
+                border-radius: 5px;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+              }
+              .list__items-info {
+                width: 100%;
+                .items__title {
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 1;
+                  -webkit-box-orient: vertical;
+                }
+                .buttons {
+                  @include dflex('', center, end, 0.5em);
+                  margin-top: 0.5em;
+                  .btn__favorite {
+                    border: 1px solid var(--bg-dull);
+                    transition: ease-out 0.2s;
+                    &:disabled {
+                      cursor: unset;
+                      color: var(--bg-dull);
+                      &:hover {
+                        color: var(--bg-dull);
+                        border: 1px solid var(--bg-dull);
+                        transition: initial;
+                      }
+                      &.trash:hover {
+                        color: var(--bg-dull);
+                        border: 1px solid var(--bg-dull);
+                        transition: initial;
+                      }
+                    }
+                    &:hover {
+                      color: var(--accent-clear);
+                      border: 1px solid var(--accent-clear);
+                      transition: ease-out 0.2s;
+                    }
+                    &.trash:hover {
+                      color: var(--blood);
+                      border: 1px solid var(--blood);
+                      transition: ease-out 0.2s;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .select__items-content {
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background-color: var(--bg);
+            box-shadow: -2px -2px 10px 1px rgba(var(--op-bg-dull), 0.8);
+            max-height: 0;
+
+            &.show {
+              padding: 1em;
+              max-height: 8em;
+            }
+            .select__items-btns {
+              @include dflex('', center, end, 1em);
+              flex-wrap: wrap;
+              label {
+                @include dflex('', center, '', 0.5em);
+                pointer-events: none;
+                .check__all {
+                  display: block;
+                  position: relative;
+                  width: 1.5em;
+                  height: 1.5em;
+                  border-radius: 20px;
+                  border: 2px solid var(--bg-dull);
+                  background-color: var(--bg-visible);
+                  cursor: pointer;
+                  pointer-events: visible;
+                }
+
+                input:checked ~ .check__all {
+                  border: 2px solid var(--blood);
+                  background-color: rgba(var(--op-blood), 0.6);
+                }
+                input:checked ~ .check__all::before {
+                  content: '¬';
+                  position: absolute;
+                  top: -7px;
+                  left: 4px;
+                  font-size: 25px;
+                  font-weight: 600;
+                  color: var(--light);
+                  transform: rotate(130deg);
+                }
+              }
+            }
+          }
+        }
+      }
+      .section__menu {
+        @include card();
+        @include shadow();
+        margin-top: 1em;
+        overflow: hidden;
+        ul li {
+          @include dflex('', center, space-between);
+          padding: 0.5em 1em;
           color: var(--text-dull);
-          cursor: pointer;
           transition: ease-out 0.2s;
           &:hover {
+            @include glass(var(--op-bg-dull), 0.5);
+            @include shadow-in(var(--op-bg-dull), 0.8);
+            border-radius: unset;
             transition: ease-out 0.2s;
-            color: var(--p-visible);
-            @include glass(var(--op-bg-dull), 0.5, 5px);
+            color: var(--light);
           }
         }
       }
     }
-    .account__order {
-      padding: 0 1em;
-      @include card();
-      @include shadow();
-      margin-top: 1em;
-      .accoun__order-view {
-        @include dflex(row, center, space-between);
-        padding: 0.5em 0;
-      }
-      .accoun__order-content {
-        @include dflex('', '', space-between);
-        padding: 1em 0;
-        color: var(--text-dull);
-        .account__order-status {
-          @include dflex(column, center);
-          cursor: pointer;
-          padding: 0.5em;
-          border-radius: 5px;
-          transition: ease-out 0.2s;
-          &:hover {
-            transition: ease-out 0.2s;
-            color: var(--p-visible);
-            @include glass(var(--op-bg-dull), 0.5, 5px);
-            @include shadow-in(var(--op-bg-dull),.8)
-          }
+  }
+  /* breakPoints */
+  @media (min-width: 640px) {
+    /* Small (sm) */
+  }
+  @media (min-width: 768px) {
+    .qwik__account {
+      .main__account {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1em;
+        grid-template-areas: 'sectionMenu sectionMain sectionMain sectionMain';
+        .section__main{
+          grid-area: sectionMain;
         }
+        .section__menu {
+          grid-area: sectionMenu;
+          margin-top: 0;
+        }
+        
       }
     }
-    .account__menu {
-      @include card();
-      @include shadow();
-      margin-top: 1em;
-      overflow: hidden;
-      ul li {
-        @include dflex('', center, space-between);
-        padding: 0.5em 1em;
-        color: var(--text-dull);
-        transition: ease-out 0.2s;
-        &:hover {
-          @include glass(var(--op-bg-dull), 0.5);
-          @include shadow-in(var(--op-bg-dull), 0.8);
-          border-radius: unset;
-          transition: ease-out 0.2s;
-          color: var(--light);
+  }
+  @media (min-width: 1024px) {
+    .qwik__account {
+      .main__account {
+        // display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1em;
+        grid-template-areas: '. sectionMenu sectionMain sectionMain sectionMain .';
+        .section__main{
+          grid-area: sectionMain;
         }
+        .section__menu {
+          grid-area: sectionMenu;
+          margin-top: 0;
+        }
+        
       }
     }
+  }
+  @media (min-width: 1280px) {
+    /* Extra Large (xl)  */
   }
 }
